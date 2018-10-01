@@ -104,6 +104,4 @@ const mapDispatchToProps=dispatch=>{
     }
 }
 
-
-
 export default connect(mapStateToProps,mapDispatchToProps) (withErrorHandler(BurgerBuilder,axios));         //we can have as many HOCs (withErrorHandler, connect() ) as we want

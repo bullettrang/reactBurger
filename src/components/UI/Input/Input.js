@@ -60,6 +60,4 @@ switch(props.elementType){
 }
   
 
-
-
 export default input;
