@@ -1,0 +1,3 @@
+.Content{
+    margin-top: 72px;   /*We use 72px = 56px (toolbar) + 16px (margin-top) because it is the height of the tool bar*/
+}

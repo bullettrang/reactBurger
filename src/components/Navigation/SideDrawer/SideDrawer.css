@@ -1,0 +1,33 @@
+.SideDrawer{
+    position:fixed;     /*always on page*/
+    width: 280px;
+    max-width: 70% ;     /*Even on small screens, the side drawer does go out the screen*/
+    height:100%;        /*Side Drawer takes full screen height*/
+    left:0;             /*sits on the full screen*/
+    top:0;
+    z-index:200;        /*the z-index value is higher then the backdrop value (100), this so that the sideDrawer appears in front of the backdrop*/
+    background-color:white;
+    padding: 32px 16px;
+    box-sizing: border-box; /* we use border-box so that the padding is included for sizing*/
+    transition: transform 0.3s ease-out;    /*For opening an closing the side drawer*/
+
+}
+/*on media devices with widths bigger then 500, do not display side drawer(not needed)*/
+@media(min-width:500px){
+    .SideDrawer{
+        display:none;}
+}
+
+/*The following css properties are for animating the sideDrawer*/
+.Open{
+    transform: translateX(0);
+}
+.Close{
+    transform: translateX(-100%);       /*Move side drawer of view*/
+}
+
+/*CSS modules allows us  to have identical CSS classes*/
+.Logo{
+    height:11%;
+    margin-bottom:32px;
+}

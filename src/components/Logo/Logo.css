@@ -1,0 +1,13 @@
+.Logo{
+    background-color: white;
+    padding:8px;            
+    height:100%;            
+    box-sizing: border-box; /*By using border-box, we can include the padding of 8px, 
+                            allowing a good fit of burger logo*/
+    border-radius: 5px;     /*Creates roounded corners*/
+}
+
+.Logo img{
+    height:100%;
+
+}

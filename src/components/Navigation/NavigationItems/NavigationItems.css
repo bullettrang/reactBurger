@@ -1,0 +1,15 @@
+.NavigationItems{
+    margin: 0;
+    padding:0;
+    list-style: none;
+    display:flex;       
+    flex-flow:column ;   /*During mobile screens, the side drawer menu becomes column*/
+    align-items:center; /*Vertically centered*/
+    height:100%;        /*by setting it to 100%, we want it to take the height of the parent, (the toolbar)*/
+}
+
+@media(min-width:500px){
+    .NavigationItems{
+        flex-flow:row;  
+    }
+}

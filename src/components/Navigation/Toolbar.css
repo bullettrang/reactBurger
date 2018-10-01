@@ -1,0 +1,33 @@
+.Toolbar{
+    height: 56px;
+    width:100%;
+    position: fixed;
+    top:0;
+    left:0;
+    background-color: #703B09;
+    display:flex;           /*flex means it can change dynamically*/ 
+    justify-content: space-between;
+    align-items:center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index:90;
+
+}
+
+.Toolbar nav{
+    height:100%;
+
+}
+/*Settings to allow toolbar to display properly on mobile*/
+/*The convenience of CSS modules means we can make a .Logo class in our Toolbar.css file & in our Logo.css file , 
+allowing for more fine tuning of CSS, the two identical CSS classes are converted to their own unique class names*/
+.Logo{
+    height: 80%;
+}
+
+/*For mobile screens, remove the element*/
+@media(max-width:499px){
+    .DesktopOnly{
+        display:none;
+    }
+}

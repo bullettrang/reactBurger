@@ -1,0 +1,56 @@
+.NavigationItem{
+    margin: 10px 0;
+    box-sizing: border-box;
+    display: block;         /*use display: block for mobile screens*/
+    /*height:100%;  height of 100% only needed for desktop screen*/
+    width:100%;      
+    /*align-items: center; use this only for desktop screen*/    /*allows centering vertically*/
+
+}
+
+.NavigationItem a{
+    color:#8F5C2C;
+    text-decoration: none;      /*removes underlined formatting of links*/
+    /* height:100%; */          /*only for desktop*/
+    /* padding: 16px 10px;      only for desktop
+    border-bottom: 4px solid transparent;       although its transparent, when highlighted this styling is important */
+    box-sizing: border-box;                        /*This css property includes the height and the border*/
+    display:block;                                  /*so height has an effect*/
+}
+
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active{
+    /* background-color: #8F5C2C;
+    border-bottom: 4px solid #40a4c8; */       /*We don't  need extra active effects for a mobile screen*/
+    color:#40a4c8;
+}
+/*BIGGER SCREENS*/
+/**/
+@media(min-width:500px){
+
+    .NavigationItem{
+        margin: 0;
+        display: flex;      /*allows centering vertically*/
+        height:100%;        /**/
+        width: auto;        /*adjusts for different desktop screen sizes*/
+        align-items: center;    /*allows centering vertically*/
+    
+    }
+    
+    .NavigationItem a{
+        color:white;
+        text-decoration: none;      /*removes underlined formatting of links*/
+        height:100%;
+        padding: 16px 10px;
+        border-bottom: 4px solid transparent;       /*although its transparent, when highlighted this styling is important*/
+    }
+    
+    .NavigationItem a:hover,
+    .NavigationItem a:active,
+    .NavigationItem a.active{
+        background-color: #8F5C2C;
+        border-bottom: 4px solid #40a4c8;
+        color:white;
+    }
+}
