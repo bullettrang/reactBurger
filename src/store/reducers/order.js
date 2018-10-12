@@ -53,8 +53,7 @@ const deleteOrderSuccess = (state,action)=>{
     //create new array
     //const updatedOrders=state.orders.filter()
     return updateObject(state,{
-        loading:false,
-        orders:action.orders
+        loading:false
     })
 }
 

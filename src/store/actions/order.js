@@ -91,7 +91,7 @@ export const deleteOrderFail = (error)=>{
     }
 }
 
-export const deleteAnOrderStart=()=>{
+export const deleteOrderStart=()=>{
     return {
         type:actionTypes.DELETE_ORDER_START
     }
@@ -107,10 +107,12 @@ export const deleteOrderSuccess =(orderId)=>{
 
 export const deleteOrder=(orderId)=>{
     return dispatch => {
+        dispatch(deleteOrderStart());
         axios.delete('/orders/'+orderId+'/.json')
         .then(res=>{
             console.log(res);
-            console.log("deleting");                
+            console.log("deleting");
+            dispatch(deleteOrderSuccess());                
             dispatch(fetchOrders());
         })
         .catch(err=>{
