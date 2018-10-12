@@ -46,7 +46,7 @@ export const purchaseInit=()=>{
 export const fetchOrdersSuccess = (orders)=>{
     return{
         type: actionTypes.FETCH_ORDERS_SUCCESS,
-        orders:orders
+        orders:orders                                   //sync fetch orders with state.orders
     }
 };
 
@@ -68,7 +68,6 @@ export const fetchOrders=()=>{
         dispatch(fetchOrdersStart());           //start fetchOrders dispatch, then we do a GET request
         axios.get('/orders.json')
         .then(res=>{
-            console.log(res);
             const fetchedOrders=[];             //create fetchOrders object, transforming data such as creating our fetchOrders array of objects here should always be done in the actions, NOT reducer
             for(let key in res.data){
                 fetchedOrders.push({
@@ -76,10 +75,43 @@ export const fetchOrders=()=>{
                     id:key
                 });
             }
+            console.log(fetchedOrders);
             dispatch(fetchOrdersSuccess(fetchedOrders));
         })
         .catch(err=>{
             dispatch(fetchOrdersFail(err));
         });
+    }
+}
+
+export const deleteOrderFail = (error)=>{
+    return {
+        type:actionTypes.DELETE_ORDER_FAIL,
+        error:error
+    }
+}
+
+export const deleteAnOrderStart=()=>{
+    return {
+        type:actionTypes.DELETE_ORDER_START
+    }
+}
+//axios.delete('https://react-my-burger-14d61.firebaseio.com/orders/-LNgRCBqEv5kL0e6HvND'
+
+export const deleteOrder=(orderId)=>{
+    return dispatch => {
+        //dispatch(deleteAnOrderStart(orderId));
+        axios.delete('/orders/'+orderId+'/.json')
+        .then(res=>{
+            console.log(res);
+            console.log("deleting");
+            
+        })
+        .catch(err=>{
+            dispatch(deleteOrderFail(err));
+            console.log(err);
+        })
+
+
     }
 }

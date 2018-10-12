@@ -27,14 +27,9 @@ const withErrorHandler=(WrappedComponent,axios)=>{
             });
         }
 
-<<<<<<< HEAD
        
         componentWillUnmount(){
              // we dont want a bunch of axios interceptors staying around, they need to be destroy when componentWillUnmount.
-=======
-        // we dont want a bunch of axios interceptors staying around, they need to be destroy when componentWillUnmount.
-        componentWillUnmount(){
->>>>>>> 977119d725bbd233c3b9711bd99ba818909d6543
             axios.interceptors.request.eject(this.reqInterceptor); //destroys request interceptor
             axios.interceptors.response.eject(this.resInterceptor);//destroys resposne interceptor
         }
@@ -49,15 +44,9 @@ const withErrorHandler=(WrappedComponent,axios)=>{
                         show={this.state.error}
                         modalClosed={this.errorConfirmedHandler}
                         >
-<<<<<<< HEAD
                         {this.state.error ? this.state.error.message:null}          {/*Do we display a error message? (MODAL STYLEZ)*/}
                     </Modal>
                     <WrappedComponent {...this.props}/>                             {/*Wrapped Component refers to our BurgerBuilder/> along with its props */}
-=======
-                        {this.state.error ? this.state.error.message:null}
-                    </Modal>
-                <WrappedComponent {...this.props}/>
->>>>>>> 977119d725bbd233c3b9711bd99ba818909d6543
                 </Aux>
             );
         }
