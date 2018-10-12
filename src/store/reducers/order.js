@@ -49,10 +49,18 @@ const deleteOrderStart = (state,action)=>{
 }
 
 const deleteOrderSuccess = (state,action)=>{
+    //I need to update the state somewhere here
+    //create new array
+    //const updatedOrders=state.orders.filter()
     return updateObject(state,{
         loading:false,
         orders:action.orders
     })
+}
+
+const deleteOrderFail=(state,action)=>{
+    return updateObject(state,{
+            loading:false});
 }
 const reducer = (state=initialState,action)=>{
     switch(action.type){
@@ -65,6 +73,7 @@ const reducer = (state=initialState,action)=>{
         case actionTypes.FETCH_ORDERS_FAIL: return fetchOrderFail(state,action);
         case actionTypes.DELETE_ORDER_START: return deleteOrderStart(state,action);
         case actionTypes.DELETE_ORDER_SUCCESS: return deleteOrderSuccess(state,action);
+        case actionTypes.DELETE_ORDER_FAIL: return deleteOrderFail(state,action);
         default:  return state;
     }
 }

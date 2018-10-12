@@ -76,7 +76,7 @@ export const fetchOrders=()=>{
                 });
             }
             console.log(fetchedOrders);
-            dispatch(fetchOrdersSuccess(fetchedOrders));
+            dispatch(fetchOrdersSuccess(fetchedOrders));            //update the orders after successful GET
         })
         .catch(err=>{
             dispatch(fetchOrdersFail(err));
@@ -96,22 +96,26 @@ export const deleteAnOrderStart=()=>{
         type:actionTypes.DELETE_ORDER_START
     }
 }
+
+export const deleteOrderSuccess =(orderId)=>{
+    return {
+        type:actionTypes.DELETE_ORDER_SUCCESS,
+        
+    }
+}
 //axios.delete('https://react-my-burger-14d61.firebaseio.com/orders/-LNgRCBqEv5kL0e6HvND'
 
 export const deleteOrder=(orderId)=>{
     return dispatch => {
-        //dispatch(deleteAnOrderStart(orderId));
         axios.delete('/orders/'+orderId+'/.json')
         .then(res=>{
             console.log(res);
-            console.log("deleting");
-            
+            console.log("deleting");                
+            dispatch(fetchOrders());
         })
         .catch(err=>{
             dispatch(deleteOrderFail(err));
             console.log(err);
         })
-
-
     }
 }
