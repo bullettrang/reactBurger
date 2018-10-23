@@ -8,13 +8,15 @@ import App from './App';
 import thunk from 'redux-thunk';        //This allows us to use asynchronous calls with REDUX
 import registerServiceWorker from './registerServiceWorker';
 import burgerBuilderReducer from './store/reducers/burgerBuilder';
- import orderReducer from './store/reducers/order';
+import orderReducer from './store/reducers/order';
+import authReducer from './store/reducers/auth';
 /*ADVANCED REDUX STORE SET UP */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;            //we need to compose our enhancers
 
 const rootReducer = combineReducers({
     burgerBuilder:burgerBuilderReducer,
-    orders:orderReducer
+    orders:orderReducer,
+    auth:authReducer
 });
 const store = createStore(rootReducer,composeEnhancers(                //we use composeEnhancers so we can use thunk
     applyMiddleware(thunk)
