@@ -49,9 +49,6 @@ const deleteOrderStart = (state,action)=>{
 }
 
 const deleteOrderSuccess = (state,action)=>{
-    //I need to update the state somewhere here
-    //create new array
-    //const updatedOrders=state.orders.filter()
     return updateObject(state,{
         loading:false
     })

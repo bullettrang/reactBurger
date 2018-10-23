@@ -99,11 +99,9 @@ export const deleteOrderStart=()=>{
 
 export const deleteOrderSuccess =(orderId)=>{
     return {
-        type:actionTypes.DELETE_ORDER_SUCCESS,
-        
+        type:actionTypes.DELETE_ORDER_SUCCESS
     }
 }
-//axios.delete('https://react-my-burger-14d61.firebaseio.com/orders/-LNgRCBqEv5kL0e6HvND'
 
 export const deleteOrder=(orderId)=>{
     return dispatch => {
