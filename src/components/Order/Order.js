@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Order.css';
-import DeleteButton from './DeleteOrder/DeleteOrder';
+import Button from '../UI/Button/Button';
 const order = (props)=> {
 
     const ingredients= [];
@@ -50,16 +50,20 @@ const order = (props)=> {
 
     <div className={classes.Order}>
         <p>{ingredientOutput}</p>
-        <p>{props.id}</p>
         <p>Price:  <strong>USD:{Number.parseFloat(props.price).toFixed(2)}</strong> </p>
         <p>Name: <strong>{props.orderData.name}</strong></p>
         <p>E-Mail: <strong>{props.orderData.email}</strong></p>
         <p>Street: <strong>{props.orderData.street}</strong></p>
         <p>Country: <strong>{props.orderData.country}</strong></p>
         <p>ZIP: <strong>{props.orderData.zip}</strong></p>
-        <DeleteButton
+        {/* <DeleteButton
             clicked={()=>props.deleted(props.id)}
-        />
+        /> */}
+        <Button
+            clicked={()=>props.deleted(props.id)}
+            btnType="Danger"
+           >DELETE
+        </Button>
     </div>
     );
 }

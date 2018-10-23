@@ -33,7 +33,6 @@ class Orders extends Component{
         }
         return(
             <div>
-                {" NOTE: I plan to add delete here"}
                 
                 {orders}
             </div>
