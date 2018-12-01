@@ -21,10 +21,10 @@ export const purchaseBurgerStart = ()=> {
     };
 }
 
-export const purchaseBurger=(orderData)=>{
+export const purchaseBurger=(orderData,token)=>{
     return dispatch=>{
         dispatch(purchaseBurgerStart());                //start burger purchase dispatch, then do GET request
-        axios.post( '/orders.json', orderData )
+        axios.post( '/orders.json?auth='+token, orderData )
         .then( response => {
             console.log(response.data);
             dispatch(purchaseBurgerSuccess(response.data.name,orderData));
@@ -63,10 +63,12 @@ export const fetchOrdersStart=()=>{             //same pattern as purchaseBurger
     }
 }
 
-export const fetchOrders=()=>{
+export const fetchOrders=(token,userId)=>{
    return dispatch=>{                                 //redux-thunk lets us return a function
         dispatch(fetchOrdersStart());           //start fetchOrders dispatch, then we do a GET request
-        axios.get('/orders.json')
+        const queryParams = '?auth='+token+'&orderBy="userId"&equalTo="'+userId+'"';
+        console.log('/orders.json'+queryParams);
+        axios.get('/orders.json'+queryParams)
         .then(res=>{
             const fetchedOrders=[];             //create fetchOrders object, transforming data such as creating our fetchOrders array of objects here should always be done in the actions, NOT reducer
             for(let key in res.data){
@@ -75,7 +77,6 @@ export const fetchOrders=()=>{
                     id:key
                 });
             }
-            console.log(fetchedOrders);
             dispatch(fetchOrdersSuccess(fetchedOrders));            //update the orders after successful GET
         })
         .catch(err=>{
@@ -103,15 +104,16 @@ export const deleteOrderSuccess =(orderId)=>{
     }
 }
 
-export const deleteOrder=(orderId)=>{
+export const deleteOrder=(token,orderId,userId)=>{
     return dispatch => {
         dispatch(deleteOrderStart());
-        axios.delete('/orders/'+orderId+'/.json')
+        const queryParams='?auth='+token;
+        // const queryParams='?auth='+token+'&orderBy="userId"&equalTo="'+userId+'"';
+        console.log('/orders/'+orderId+'.json'+queryParams);
+        axios.delete('/orders/'+orderId+'.json'+queryParams)
         .then(res=>{
-            console.log(res);
-            console.log("deleting");
             dispatch(deleteOrderSuccess());                
-            dispatch(fetchOrders());
+            dispatch(fetchOrders(token,userId));
         })
         .catch(err=>{
             dispatch(deleteOrderFail(err));

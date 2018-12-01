@@ -17,7 +17,7 @@ class BurgerBuilder extends Component{
     }
 
     componentDidMount(){                                                                                //get the data with GET request, response is used to assign to this.state.ingredients.
-        console.log(this.props);
+        
         this.props.onInitIngredients();                             //we must set state.order.purchased to FALSE before rendering the Checkout component
     }
 
@@ -34,7 +34,13 @@ class BurgerBuilder extends Component{
     }
 
     purchaseHandler=()=> {
-        this.setState({purchasing:true});
+        if(this.props.isAuthenticated){
+            this.setState({purchasing:true});
+        }
+        else{                                               //this case is if a user creates a burger BEFORE.... logging in...
+            this.props.onSetAuthRedirectPath('/checkout');          //set the redirect path to /checkout
+            this.props.history.push('/auth');                       //ask user to login at the auth page
+        }
     }
 
     cancelPurchaseHandler=()=>{
@@ -67,7 +73,8 @@ class BurgerBuilder extends Component{
                                         ingredientsAdded={this.props.onIngredientAdded}
                                         ingredientsRemoved={this.props.onIngredientRemoved}
                                         purchasable={this.updatePurchaseState(this.props.ings)}
-                                        ordered= {this.purchaseHandler}/>
+                                        ordered= {this.purchaseHandler}
+                                        isAuth={this.props.isAuthenticated}/>
                 </Aux>
                 );
                 orderSummary = <OrderSummary                                        //order summmary only renders conditionally
@@ -92,7 +99,8 @@ const mapStateToProps=state=>{
     return{
         ings:state.burgerBuilder.ingredients,
         prc: state.burgerBuilder.totalPrice,
-        error:state.burgerBuilder.error
+        error:state.burgerBuilder.error,
+        isAuthenticated: state.auth.token !==null
     }
 }
 const mapDispatchToProps=dispatch=>{
@@ -100,7 +108,8 @@ const mapDispatchToProps=dispatch=>{
         onIngredientAdded:(ingName)=> dispatch(burgerBuilderActions.addIngredient(ingName)),            //why do we use arrow functions? because we want to store a function reference, not directly execute dispatch func,
         onIngredientRemoved:(ingName)=> dispatch(burgerBuilderActions.removeIngredient(ingName)),
         onInitIngredients:()=>dispatch(burgerBuilderActions.initIngredients()),
-        onInitPurchase:() =>dispatch(burgerBuilderActions.purchaseInit())
+        onInitPurchase:() =>dispatch(burgerBuilderActions.purchaseInit()),
+        onSetAuthRedirectPath:(path)=>dispatch(burgerBuilderActions.setAuthRedirectPath(path))
     }
 }
 

@@ -21,7 +21,6 @@ class Checkout extends Component {
     
     render(){
     let summary= <Redirect to ="/"/>;
-   
         if(this.props.ings){
             const purchasedRedirect=this.props.purchased?<Redirect to="/"/> : null;
             summary= (     
@@ -50,10 +49,6 @@ const mapStateToProps=state=>{
     }
 }
 
-const mapDispatchToProps=dispatch=>{
-    return{
-        onInitPurchase: ()=> dispatch(actions.purchaseInit())
-    }
-}
+
 
 export default connect(mapStateToProps)(Checkout);         //connect this container with Redux
